@@ -59,7 +59,7 @@ int main(void)
 {
     // Initialization
     //---------------------------------------------------------
-    InitWindow(screenWidth, screenHeight, "raylib game template");
+    InitWindow(screenWidth, screenHeight, "Andes");
 
     InitAudioDevice();      // Initialize audio device
 
@@ -94,6 +94,7 @@ int main(void)
     switch (currentScreen)
     {
         case LOGO: UnloadLogoScreen(); break;
+	case SPLASH: UnloadSplashScreen(); break;
         case TITLE: UnloadTitleScreen(); break;
         case GAMEPLAY: UnloadGameplayScreen(); break;
         case ENDING: UnloadEndingScreen(); break;
@@ -123,6 +124,7 @@ static void ChangeToScreen(GameScreen screen)
     switch (currentScreen)
     {
         case LOGO: UnloadLogoScreen(); break;
+	case SPLASH: UnloadSplashScreen(); break;
         case TITLE: UnloadTitleScreen(); break;
         case GAMEPLAY: UnloadGameplayScreen(); break;
         case ENDING: UnloadEndingScreen(); break;
@@ -133,6 +135,7 @@ static void ChangeToScreen(GameScreen screen)
     switch (screen)
     {
         case LOGO: InitLogoScreen(); break;
+	case SPLASH: InitSplashScreen(); break;
         case TITLE: InitTitleScreen(); break;
         case GAMEPLAY: InitGameplayScreen(); break;
         case ENDING: InitEndingScreen(); break;
@@ -169,6 +172,7 @@ static void UpdateTransition(void)
             switch (transFromScreen)
             {
                 case LOGO: UnloadLogoScreen(); break;
+		case SPLASH: UnloadSplashScreen(); break;
                 case TITLE: UnloadTitleScreen(); break;
                 case OPTIONS: UnloadOptionsScreen(); break;
                 case GAMEPLAY: UnloadGameplayScreen(); break;
@@ -180,6 +184,7 @@ static void UpdateTransition(void)
             switch (transToScreen)
             {
                 case LOGO: InitLogoScreen(); break;
+                case SPLASH: InitSplashScreen(); break;
                 case TITLE: InitTitleScreen(); break;
                 case GAMEPLAY: InitGameplayScreen(); break;
                 case ENDING: InitEndingScreen(); break;
@@ -228,9 +233,15 @@ static void UpdateDrawFrame(void)
             {
                 UpdateLogoScreen();
 
-                if (FinishLogoScreen()) TransitionToScreen(TITLE);
+                if (FinishLogoScreen()) TransitionToScreen(SPLASH);
 
             } break;
+	    case SPLASH:
+	    {
+		UpdateSplashScreen();
+
+		if (FinishSplashScreen()) TransitionToScreen(TITLE);
+	    }
             case TITLE:
             {
                 UpdateTitleScreen();
@@ -276,6 +287,7 @@ static void UpdateDrawFrame(void)
         switch(currentScreen)
         {
             case LOGO: DrawLogoScreen(); break;
+			case SPLASH: DrawSplashScreen(); break;
             case TITLE: DrawTitleScreen(); break;
             case OPTIONS: DrawOptionsScreen(); break;
             case GAMEPLAY: DrawGameplayScreen(); break;
