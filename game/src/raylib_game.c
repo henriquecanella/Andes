@@ -84,6 +84,21 @@ int main(void)
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
+		if (IsKeyPressed(KEY_F))	
+		{
+			int display = GetCurrentMonitor();
+
+			if (IsWindowFullscreen())
+			{
+				SetWindowSize(screenWidth, screenHeight);
+			}
+			else {
+				SetWindowSize(GetMonitorWidth(display),GetMonitorHeight(display));
+			}
+
+			ToggleFullscreen();
+		}
+
         UpdateDrawFrame();
     }
 #endif
