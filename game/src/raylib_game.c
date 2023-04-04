@@ -31,8 +31,16 @@ Sound fxCoin = { 0 };
 //----------------------------------------------------------------------------------
 // Local Variables Definition (local to this module)
 //----------------------------------------------------------------------------------
-static const int screenWidth = 800;
-static const int screenHeight = 450;
+
+// Screen varialbes
+
+//Resize
+//https://www.raylib.com/examples/core/loader.html?name=core_window_letterbox
+int screenWidth = 320*4;
+int screenHeight = 180*4;
+
+static int gameWidth = 320;
+static int gameHeight = 180;
 
 // Required variables to manage screen transitions (fade-in, fade-out)
 static float transAlpha = 0.0f;
@@ -40,6 +48,7 @@ static bool onTransition = false;
 static bool transFadeOut = false;
 static int transFromScreen = -1;
 static GameScreen transToScreen = UNKNOWN;
+
 
 //----------------------------------------------------------------------------------
 // Local Functions Declaration
@@ -90,12 +99,13 @@ int main(void)
 
 		if (IsWindowFullscreen())
 		{
-			SetWindowSize(screenWidth, screenHeight);
+			SetWindowSize(320, 180);
 		}
 		else {
-			SetWindowSize(GetMonitorWidth(display),GetMonitorHeight(display));
+			int monitorWidth = GetMonitorWidth(0);
+			int monitorHeight = GetMonitorHeight(0);
+			SetWindowSize(monitorWidth, monitorHeight);
 		}
-
 		ToggleFullscreen();
 	}
 

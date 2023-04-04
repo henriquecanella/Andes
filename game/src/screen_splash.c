@@ -31,7 +31,7 @@ void DrawSplashScreen(void)
 {
 	DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), ORANGE);
 	Vector2 textPos = { 130, 220 };
-	DrawTextEx(font, "Lazy Bunny", textPos, font.baseSize*3.0f, 4, BLACK);
+	DrawTextEx(font, "LAZY BUNNY", textPos, font.baseSize*6.0f, 4, BLACK);
 }
 
 // Splash Screen Unload logic
